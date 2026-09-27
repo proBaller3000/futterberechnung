@@ -52,20 +52,21 @@ if tierart == "Milchkuh":
 st.header("📋 Rationsgestaltung (Frischmasse pro Tag)")
 st.write("Trage hier ein, wie viel kg Frischmasse (FM) das Tier pro Futtermittel fressen soll:")
 
-ration_inputs = {}
-cols = st.columns(3)
+KATEGORIEN = {
+    "🌿 Grundfutterration": ["Grassilage (mittlere Qualität)", "Maissilage (33% TS)", "Heu (normal)"],
+    "🌾 Ausgleichskraftfutter": ["Gerstenschrot", "Körnermais"],
+    "💪 Leistungskraftfutter": ["Rapsextraktionsschrot"],
+}
 
-for idx, row in df_futtermittel.iterrows():
-    with cols[idx % 3]:
-        # Erstelle ein Eingabefeld für jedes Futtermittel
-        ration_inputs[row["Futtermittel"]] = st.number_input(
-            f"{row['Futtermittel']} (kg FM)", 
-            min_value=0.0, 
-            max_value=50.0, 
-            value=0.0, 
-            step=0.5,
-            key=row["Futtermittel"]
-        )
+ration_inputs = {}
+for titel, mittel in KATEGORIEN.items():
+    st.subheader(titel)
+    cols = st.columns(3)
+    for i, name in enumerate(mittel):
+        with cols[i % 3]:
+            ration_inputs[name] = st.number_input(
+                f"{name} (kg FM)", 0.0, 50.0, 0.0, 0.5, key=name
+            )
 
 # Berechnung der gelieferten Nährstoffe
 gesamt_ts = 0.0
@@ -76,7 +77,7 @@ gesamt_rnb = 0.0
 detaillierte_liste = []
 
 for idx, row in df_futtermittel.iterrows():
-    fm_menge = ration_inputs[row["Futtermittel"]]
+    fm_menge = ration_inputs.get(row["Futtermittel"], 0.0)
     if fm_menge > 0:
         ts_menge = fm_menge * (row["TS_g_kg"] / 1000.0)
         nel_geliefert = ts_menge * row["NEL_MJ_kg_TS"]
