@@ -8,11 +8,9 @@ st.title("🌾 Futtermittel-Rationsrechner")
 st.markdown("Nährwerte nach **LFL/Gruber Tabelle, Kapitel 9** (MEₚₖ-System, GfE 2023).")
 
 # 1. Offizielle Nährwerttabelle (Kapitel 9 der Gruber Tabelle)
-@st.cache_data
-def load_futtermittel():
-    return pd.read_csv("gruber_naehrstoffe.csv")
-
-df_futtermittel = load_futtermittel()
+# ponytail: kein @st.cache_data - die CSV ist 20 kB, und der Cache serviert sonst
+# nach jeder Datenänderung die alte Datei, bis der Server neu startet.
+df_futtermittel = pd.read_csv("gruber_naehrstoffe.csv")
 
 # Bedarfswerte nach GfE 2023 (Gruber Tab. 14 Erhaltung bei 21 kg TM, Tab. 17/19 Konzentrationen)
 KOEGEWICHT = [600, 650, 700, 750, 800]
@@ -62,11 +60,14 @@ if tierart == "Milchkuh":
 st.header("📋 Rationsgestaltung (Frischmasse pro Tag)")
 st.write("Trage hier ein, wie viel kg Frischmasse (FM) das Tier pro Futtermittel fressen soll:")
 
-KATEGORIEN = ["Grundfutterration", "Ausgleichskraftfutter", "Leistungskraftfutter"]
+# Reihenfolge = Gliederung der Gruber-Tabelle: Kapitel 9.1-9.3, 9.4-9.9, 9.10, 9.11
+KATEGORIEN = ["Grundfutterration", "Ausgleichskraftfutter", "Leistungskraftfutter", "Mineral und Spezialfutter"]
+SYMBOL = {"Grundfutterration": "🌿", "Ausgleichskraftfutter": "🌾", "Leistungskraftfutter": "💪",
+          "Mineral und Spezialfutter": "🧂"}
 
 ration_inputs = {}
 for kategorie in KATEGORIEN:
-    st.subheader(f"{'🌿' if kategorie.startswith('Grund') else '🌾' if kategorie.startswith('Ausgleich') else '💪'} {kategorie}")
+    st.subheader(f"{SYMBOL[kategorie]} {kategorie}")
     mittel = df_futtermittel[df_futtermittel["Kategorie"] == kategorie]
     cols = st.columns(3)
     for i, (_, row) in enumerate(mittel.iterrows()):

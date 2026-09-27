@@ -18,19 +18,80 @@ Num,Futtermittel,Kategorie,TM_g_kg_FM,aNDFom_g_kg_TM,ADFom_g_kg_TM,OMD_pct,CP_g_
 3715,Luzerneheu 1. Schnitt Ende der Blüte,Grundfutterration,860,515,379,64.0,166,78,20,6.6,9.0,40,19,15.0,2.8,2.7,0.6,27
 3125,Gerstenstroh,Grundfutterration,860,847,542,50.0,30,49,2,-7.5,7.1,12,15,4.4,1.0,1.1,0.4,15
 3185,Weizenstroh,Grundfutterration,860,835,527,50.0,40,49,2,-6.2,7.1,17,13,3.6,1.1,0.9,0.3,10
-6425,Rapsextraktionsschrot,Leistungskraftfutter,890,272,204,78.8,343,158,93,20.9,10.6,82,36,8.7,10.7,4.6,0.6,13
-6434,Sojaextraktionsschrot 42 Prozent CP,Leistungskraftfutter,880,229,136,91.6,420,165,99,26.8,10.7,141,15,3.2,6.5,3.3,0.3,22
-6405,Leinextraktionsschrot,Leistungskraftfutter,880,260,154,73.0,328,113,54,29.0,10.0,38,55,4.0,7.0,5.0,1.0,11
-4345,Erbsen,Leistungskraftfutter,880,123,64,89.8,206,100,25,10.7,11.8,349,11,1.1,4.4,1.4,0.2,11
-4305,Ackerbohnen,Leistungskraftfutter,880,145,113,91.3,263,104,27,18.4,12.1,298,11,1.4,5.3,1.5,0.2,12
-4365,Süßlupine weiß,Leistungskraftfutter,880,182,147,92.8,308,103,25,24.4,14.2,91,89,2.5,5.2,1.8,0.1,11
-4025,Gerste zweizeilig,Ausgleichskraftfutter,880,143,55,87.1,103,87,13,-3.7,11.5,496,18,0.5,3.3,1.1,0.1,5
-4065,Hafer,Ausgleichskraftfutter,880,264,136,77.1,97,73,8,-2.5,10.4,380,35,1.1,3.3,1.1,0.1,4
-4105,Roggen,Ausgleichskraftfutter,880,122,37,86.6,88,81,7,-5.3,11.4,486,12,0.4,2.6,1.0,0.1,5
-4125,Triticale,Ausgleichskraftfutter,880,142,31,89.4,104,87,10,-3.7,11.7,576,11,0.4,3.1,1.1,0.0,5
-4145,Weizen,Ausgleichskraftfutter,880,108,39,87.0,116,88,14,-1.9,11.4,561,14,0.4,3.2,1.1,0.1,4
-4205,Körnermais,Ausgleichskraftfutter,880,92,39,84.6,77,94,21,-8.7,11.4,398,36,0.3,3.0,1.4,0.1,4
-8185,Mineralfutter Milchkuh laktierend,Ausgleichskraftfutter,950,0,0,70.0,0,0,0,0,0.4,0,0,120,0.0,100,170,0
-4925,Kohlensaurer Kalk,Ausgleichskraftfutter,997,0,0,100.0,0,0,0,0,0,0,0,380,0.4,1.6,0,0
-4945,Viehsalz,Ausgleichskraftfutter,990,0,0,100.0,0,0,0,0,0,0,0,0,0,0,361.3,0
-4965,Natriumhydrogencarbonat,Ausgleichskraftfutter,990,0,0,100.0,0,0,0,0,0,0,0,0,0,0,271.3,0
+4535,Futterzucker,Ausgleichskraftfutter,990,0,0,94,1.0,93,0,-22.5,12.5,994,0,0,0,0,0,0
+5505,Zuckerrübe,Ausgleichskraftfutter,230,210,125,91,80,91,8,-8.9,11.9,647,6,2.3,1.5,1.6,1,8
+5555,Gehaltsfutterrübe,Ausgleichskraftfutter,146,230,135,88,80,87,8,-8.1,11.6,545,8,2.7,2.4,1.8,4.1,30
+6505,Trockenschnitzel,Ausgleichskraftfutter,890,366,191,79,84,86,13,-7.1,11.5,86,8,9.2,1.1,1.8,1.1,9
+6514,"Melasseschnitzel, 14% ZU",Ausgleichskraftfutter,910,330,220,89.7,90,97,14,-8.7,13.2,150,9,11,0.8,1.8,1,12
+6515,"Melasseschnitzel, 18% ZU",Ausgleichskraftfutter,896,315,184,89.7,97,98,16,-7.8,13,200,8,10.6,0.8,1.8,1.7,14
+6516,"Melasseschnitzel, 23% ZU",Ausgleichskraftfutter,907,300,170,89.7,110,99,18,-6,12.7,250,8,10,0.8,1.8,2,15
+7505,Rübenkleinteile,Ausgleichskraftfutter,170,282,136,84,75,83,7,-7.9,11.4,360,3,3.3,2.1,2.3,1.4,12
+7525,Pressschnitzel siliert,Ausgleichskraftfutter,270,412,229,88.5,94,91,9,-6.6,13.3,15,6,12.7,1,2.4,0.5,4
+7545,Melasse (Zuckerrübe),Ausgleichskraftfutter,780,0,0,89.4,135,100,22,-2.1,11.1,652,0,2.5,0.5,0.2,7.6,54
+5585,"Karotten, Gelbe Rüben",Ausgleichskraftfutter,150,265,160,88,90,90,8,-7.1,12.8,0,15,4.4,3,1.9,2.8,28
+5605,"Kartoffel roh, 16% ST",Ausgleichskraftfutter,220,170,105,90,97,95,11,-6.7,12.6,564,4,0.4,2.5,1.4,0.6,22
+6015,Bierhefe trocken,Ausgleichskraftfutter,900,165,100,0,521,0,0,0,0,19,22,2,11.4,1.8,0.3,15
+6035,Malzkeime,Ausgleichskraftfutter,920,400,150,78,220,116,42,9.6,11.5,224,16,2.5,7,1.6,0.5,17
+6135,Roggenkleie,Ausgleichskraftfutter,880,255,150,71,163,81,14,6.1,10.5,220,36,1.7,11.3,3.6,0.8,14
+6144,Weizentrockenschlempe,Ausgleichskraftfutter,900,285,170,78,382,152,79,29.8,12.5,41,61,3.5,10.8,3.6,3.1,13
+6145,Weizennachmehl,Ausgleichskraftfutter,880,180,110,87,182,101,17,4.6,13.4,551,45,0.9,7.4,2.9,0.2,9
+6155,Weizenfuttermehl,Ausgleichskraftfutter,880,210,125,83,182,96,17,5.6,12.8,441,45,1.2,8.1,2.9,0.4,13
+6165,Weizengrießkleie,Ausgleichskraftfutter,880,275,160,80,182,89,14,6.6,12.2,287,45,1.4,10.3,4.3,0.5,12
+6175,Weizenkleie,Ausgleichskraftfutter,880,495,160,77,184,86,14,7.6,11.8,197,48,1.2,11.1,5,0.2,13
+6204,Maistrockenschlempe,Ausgleichskraftfutter,900,260,155,84,360,222,144,15.5,13.7,94,71,3.5,8.6,2.4,3.1,8
+6215,Maisfuttermehl,Ausgleichskraftfutter,880,220,130,87,118,95,11,-4.2,14.1,348,72,0.8,5,3,0.5,2
+6246,Maiskleberfutter 23-30% CP,Ausgleichskraftfutter,880,265,155,84,258,99,20,18.4,13,182,41,1.5,9.5,4.8,2.8,14
+7015,Bierhefe frisch,Ausgleichskraftfutter,100,155,95,0,525,0,0,0,0,10,31,2,11.4,1.8,0.3,15
+7026,Biertreber siliert,Ausgleichskraftfutter,247,370,220,68.1,249,156,91,6.7,11.1,21,84,3.6,6,2,0.4,1
+7145,Weizenschlempe flüssig,Ausgleichskraftfutter,60,285,170,78,360,153,80,26.1,12.4,182,71,3.5,10.8,3.6,3.1,13
+7205,Maisschlempe flüssig,Ausgleichskraftfutter,70,260,155,78,287,137,64,17.1,13.3,98,117,2.5,8.6,4.7,1.3,9
+7635,Kartoffelpresspülpe siliert,Ausgleichskraftfutter,180,440,260,94,49,96,6,-15.2,14.1,296,5,0.7,2.7,0.7,0.1,22
+7645,Kartoffelschlempe frisch,Ausgleichskraftfutter,60,240,140,64,307,90,35,28.2,8.5,23,17,2.8,7.3,0.5,0.6,55
+7685,Apfeltrester,Ausgleichskraftfutter,220,455,265,52,66,58,8,-3.3,7.8,111,42,2,1,2,0.8,7
+5705,"Vollmilch 4,2% CL, 3,5% CP",Ausgleichskraftfutter,135,0,0,0,262,0,0,0,0,345,311,8.6,7.2,0.9,3.2,11
+6725,Magermilch trocken,Ausgleichskraftfutter,941,0,0,0,365,0,0,0,0,481,5,14,10.8,1.6,5.4,14
+7725,Magermilch frisch,Ausgleichskraftfutter,86,0,0,0,361,0,0,0,0,481,11,13.6,10.9,1.6,3.6,12
+7735,Labmolke frisch,Ausgleichskraftfutter,50,0,0,0,137,0,0,0,0,727,13,8.2,8.6,1.4,6.4,25
+4025,Gerste zweizeilig,Ausgleichskraftfutter,880,162,63,87.1,117,99,15,-4.3,13.1,564,20,0.6,3.8,1.3,0.1,6
+4026,Gerste vierzeilig,Ausgleichskraftfutter,880,169,79,87.1,116,99,14,-4.4,13.1,558,20,0.5,4.2,1.5,0.1,6
+4065,Hafer,Ausgleichskraftfutter,880,300,155,77.1,110,83,9,-2.8,11.8,432,40,1.2,3.7,1.3,0.2,5
+4105,Roggen,Ausgleichskraftfutter,880,139,42,86.6,100,92,8,-6,13,552,14,0.5,3,1.1,0.1,6
+4125,Triticale,Ausgleichskraftfutter,880,161,35,89.4,118,98,11,-4.2,13.3,655,13,0.5,3.5,1.3,0.1,5
+4145,Weizen,Ausgleichskraftfutter,880,123,44,87,132,101,16,-2.2,13,638,16,0.5,3.6,1.3,0.1,5
+4205,Mais,Ausgleichskraftfutter,880,104,44,84.6,88,107,24,-9.9,13,452,41,0.3,3.4,1.6,0.1,4
+4305,Ackerbohnen,Ausgleichskraftfutter,880,165,128,91.3,299,118,31,20.9,13.8,339,12,1.6,6,1.7,0.2,13
+4345,Erbsen,Ausgleichskraftfutter,880,140,73,89.8,234,114,28,12.2,13.4,397,13,1.3,5,1.6,0.2,12
+4365,Süßlupine weiß,Ausgleichskraftfutter,880,207,167,92.8,350,117,29,27.7,16.1,104,101,2.8,5.9,2,0.1,13
+4405,Leinsamen,Ausgleichskraftfutter,910,240,140,65,248,98,37,18.3,14,37,365,2.8,5.4,5.6,0.9,8
+4425,Rapssamen,Ausgleichskraftfutter,900,194,117,74,226,112,41,11.7,17.5,46,444,5,7.8,3.3,0.3,9
+4435,Sojabohnen dampferhitzt,Ausgleichskraftfutter,935,168,138,94,410,148,59,34.7,18.5,116,226,2.9,7.3,3,0.2,22
+5435,Sojaöl,Ausgleichskraftfutter,999,0,0,85,0,84,0,-20.4,30.6,0,999,0,0,0,0,0
+6405,Leinextraktionsschrot,Ausgleichskraftfutter,880,285,170,73,385,139,72,32.6,10.8,45,27,4.5,9.5,5.7,1.1,12
+6406,"Leinkuchen,-expeller",Ausgleichskraftfutter,880,295,175,72,373,128,61,32.7,11.2,43,63,4.2,8.2,5.3,1.1,12
+6425,Rapsextraktionsschrot,Ausgleichskraftfutter,890,306,229,78.8,385,177,105,23.4,11.9,92,40,9.8,12,5.2,0.6,15
+6426,"Rapskuchen, 8% Rohfett",Ausgleichskraftfutter,910,320,191,81.2,370,118,43,33.4,13.2,75,88,8.2,11.9,5.5,0.5,15
+6427,"Rapskuchen, 15% Rohfett",Ausgleichskraftfutter,910,292,176,81.2,340,115,39,29,14.6,68,165,7.5,11.6,5.1,0.4,13
+6434,"Sojaextr.schrot, 42% CP",Ausgleichskraftfutter,880,260,155,91.6,477,187,112,30.4,12.2,160,17,3.6,7.4,3.7,0.4,25
+6435,"Sojaextr.schrot, 43% CP",Ausgleichskraftfutter,880,143,93,91.6,496,217,132,37,14,160,29,4.2,7.3,4,0.3,25
+6436,"Sojaextr.schrot, 47% CP",Ausgleichskraftfutter,880,109,68,91.6,532,226,142,41.2,14,161,29,4,7.7,4.2,0.4,26
+6438,"Sojaextr.schrot, pansenstabil",Ausgleichskraftfutter,880,143,93,90,496,313,230,15.5,13.7,160,29,4.2,7.3,4,0.3,25
+6439,"Sojakuchen, 8% Rohfett",Ausgleichskraftfutter,890,240,145,92,449,209,124,31.3,15.5,110,92,3,7,3,0.1,20
+6445,Sonnenblu.extr.schrot,Ausgleichskraftfutter,880,465,270,61,383,105,49,37.8,8.5,80,25,4,10.7,5.2,0.5,13
+8015,Milchaustauscher Aufzucht,Ausgleichskraftfutter,940,1,0,0,223,0,0,0,0,493,160,9.6,6.4,2,5.3,20
+8025,Milchaustauscher Mast,Ausgleichskraftfutter,940,1,0,0,234,0,0,0,0,437,213,9.6,6.4,2,5,20
+8035,"Kälberaufzuchtfutter, 18% CP",Ausgleichskraftfutter,880,285,136,0,205,0,0,0,0,436,45,9.1,5.7,2.1,2.3,10
+8036,"Kälberaufzuchtfutter, 24% CP",Ausgleichskraftfutter,880,285,153,0,273,0,0,0,0,388,40,9.1,5.7,2.1,2.3,10
+8525,Ergänzungsfutter,Ausgleichskraftfutter,880,235,140,0,207,0,0,0,0,230,45,11.5,6.9,107,0.1,11
+8105,"MLF, 14% CP",Leistungskraftfutter,886,169,86,84.6,159,99,20,2.8,12.5,408,31,9,5.5,2.7,3.4,7.9
+8116,"MLF, 16% CP",Leistungskraftfutter,881,210,91,82.1,182,100,23,6.1,12,429,25,9.1,5.7,2.8,3.4,8.4
+8126,"MLF, 18% CP",Leistungskraftfutter,883,239,111,81.9,204,99,23,9.7,12.2,343,39,9,7,3.5,3.4,10.1
+4925,Kohlensaurer Kalk,Mineral und Spezialfutter,997,0,0,100,0,0,0,0,0,0,0,380,0.4,1.6,0,0
+4945,Viehsalz,Mineral und Spezialfutter,990,0,0,100,0,0,0,0,0,0,0,0,0,0,361.3,0
+4965,Na.hydrogencarb. NaHCO,Mineral und Spezialfutter,990,0,0,100,0,0,0,0,0,0,0,0,0,0,271.3,0
+5825,Futterfett,Mineral und Spezialfutter,999,0,0,83.5,0,83,0,-20,30,0,998,0,0,0,0,0
+5965,Rohglycerin,Mineral und Spezialfutter,880,0,0,100,0,83,0,-20.1,12.3,895,48,0,0,0,15.8,0
+5975,Propylenglykol,Mineral und Spezialfutter,990,0,0,91,0,90,0,-21.9,12.1,989,1,0,0,0,0,0
+6985,Futterharnstoff,Mineral und Spezialfutter,990,0,0,100,2886,97,0,438,10.6,0,0,0,0,0,0,0
+8183,Min.futter Milchkuh trocken,Mineral und Spezialfutter,950,0,0,70,0,0,0,0,0.4,0,0,20,0,100,80,0
+8184,Mineralfutter Jungvieh,Mineral und Spezialfutter,950,0,0,70,0,0,0,0,0.4,0,0,150,0,20,100,0
+8185,Mineralfutter Milchkuh lakt.,Mineral und Spezialfutter,950,0,0,70,0,0,0,0,0.4,0,0,120,0,100,170,0
