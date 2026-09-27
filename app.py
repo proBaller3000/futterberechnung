@@ -33,11 +33,13 @@ if tierart == "Milchkuh":
     gewicht = st.sidebar.number_input("Lebendgewicht (kg)", min_value=400, max_value=900, value=650, step=50)
     milchmenge = st.sidebar.number_input("Tägliche Milchleistung (kg)", min_value=0, max_value=60, value=25, step=1)
     fett = st.sidebar.number_input("Milchfettgehalt (%)", min_value=2.0, max_value=6.0, value=4.0, step=0.1)
+    eiweiss = st.sidebar.number_input("Milcheiweißgehalt (%)", min_value=2.0, max_value=5.0, value=3.4, step=0.1)
     
     # Bedarfsberechnung nach Gruber Tabelle (Näherungsformeln)
     # Erhaltungsbedarf + Leistungsbedarf
     bedarf_nel = (0.293 * (gewicht ** 0.75)) + (milchmenge * (0.4 * 0.15 * fett))
-    bedarf_nxp = (gewicht * 0.7) + (milchmenge * 85) # Grobe Schätzung: ~85g nXP pro kg Milch
+    # Leistungsbedarf nXP: ~25 g nXP je 1% Milcheiweiß je kg Milch (≈85 g bei 3,4%)
+    bedarf_nxp = (gewicht * 0.7) + (milchmenge * eiweiss * 25)
     bedarf_ts = 0.02 * gewicht + 0.3 * milchmenge # Schätzung der TS-Aufnahmekapazität
     
     st.sidebar.markdown("---")
