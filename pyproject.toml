@@ -1,0 +1,16 @@
+[project]
+name = "futtermittelrechner"
+version = "0.1.0"
+description = "Futtermittel-Rationsrechner mit Python, Pandas und Streamlit"
+requires-python = ">=3.11"
+dependencies = [
+"numpy>=2.0",
+"pandas>=2.2",
+"openpyxl>=3.1",
+"streamlit>=1.40",
+]
+
+[tool.uv]
+package = false
+
+[tool.streamlit]
