@@ -17,8 +17,8 @@ SOLL = {
 at = AppTest.from_file("app.py", default_timeout=60).run()
 assert not at.exception, at.exception
 assert len([n for n in at.number_input if str(n.key).isdigit()]) == 35   # 35 Futtermittel laut CSV
-assert [s.value for s in at.subheader[:3]] == [
-    "🌿 Grundfutterration", "🌾 Ausgleichskraftfutter", "💪 Leistungskraftfutter"]
+assert [s.value for s in at.subheader[:4]] == [
+    "🌿 Grundfutterration", "🌾 Ausgleichskraftfutter", "💪 Leistungskraftfutter", "🧂 Mineral und Spezialfutter"]
 
 for num, menge in RATION.items():
     at.number_input(key=num).set_value(menge)

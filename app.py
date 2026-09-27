@@ -62,11 +62,11 @@ if tierart == "Milchkuh":
 st.header("📋 Rationsgestaltung (Frischmasse pro Tag)")
 st.write("Trage hier ein, wie viel kg Frischmasse (FM) das Tier pro Futtermittel fressen soll:")
 
-KATEGORIEN = ["Grundfutterration", "Ausgleichskraftfutter", "Leistungskraftfutter"]
+KATEGORIEN = ["Grundfutterration", "Ausgleichskraftfutter", "Leistungskraftfutter", "Mineral und Spezialfutter"]
 
 ration_inputs = {}
 for kategorie in KATEGORIEN:
-    st.subheader(f"{'🌿' if kategorie.startswith('Grund') else '🌾' if kategorie.startswith('Ausgleich') else '💪'} {kategorie}")
+    st.subheader(f"{'🌿' if kategorie.startswith('Grund') else '🌾' if kategorie.startswith('Ausgleich') else '💪' if kategorie.startswith('Leistung') else '🧂'} {kategorie}")
     mittel = df_futtermittel[df_futtermittel["Kategorie"] == kategorie]
     cols = st.columns(3)
     for i, (_, row) in enumerate(mittel.iterrows()):
