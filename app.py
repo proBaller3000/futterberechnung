@@ -4,7 +4,7 @@ import numpy as np
 
 st.set_page_config(page_title="Futtermittelrechner (Gruber Tabelle)", layout="wide")
 
-st.title("🌾 Futtermittel-Rationsrechner (Python & Streamlit)")
+st.title("🌾 Futtermittel-Rationsrechner")
 st.markdown("Nährwerte nach **LFL/Gruber Tabelle, Kapitel 9** (MEₚₖ-System, GfE 2023).")
 
 # 1. Offizielle Nährwerttabelle (Kapitel 9 der Gruber Tabelle)
@@ -27,6 +27,7 @@ MILCH_STUFEN = [10, 15, 20, 25, 30, 35, 40, 45, 50]
 TM_AUFNAHME = [14.7, 16.1, 17.5, 18.9, 20.3, 21.7, 23.1, 24.5, 25.9]  # kg TM/Tag
 CA_ZIEL = [3.7, 4.3, 4.8, 5.2, 5.6, 5.9, 6.2, 6.5, 6.7]   # g/kg TM
 P_ZIEL = [2.1, 2.4, 2.6, 2.8, 3.0, 3.2, 3.3, 3.5, 3.6]    # g/kg TM
+NA_ZIEL = [1.3, 1.4, 1.5, 1.6, 1.6, 1.7, 1.7, 1.8, 1.8]   # g/kg TM
 
 # Sidebar: Tierdaten & Bedarf
 st.sidebar.header("🐄 Tierdaten & Bedarf")
@@ -48,13 +49,14 @@ if tierart == "Milchkuh":
     bedarf_ts = np.interp(milchmenge, MILCH_STUFEN, TM_AUFNAHME)
     ziel_ca = np.interp(milchmenge, MILCH_STUFEN, CA_ZIEL)
     ziel_p = np.interp(milchmenge, MILCH_STUFEN, P_ZIEL)
+    ziel_na = np.interp(milchmenge, MILCH_STUFEN, NA_ZIEL)
 
     st.sidebar.markdown("---")
     st.sidebar.subheader("🎯 Berechneter Bedarf / Tag:")
     st.sidebar.write(f"**Energie (MEₚₖ):** {bedarf_me:.1f} MJ")
     st.sidebar.write(f"**Dünndarmprotein (sidP):** {bedarf_sidp:.0f} g")
     st.sidebar.write(f"**Soll-TS-Aufnahme:** ~{bedarf_ts:.1f} kg")
-    st.sidebar.write(f"**Zielkonzentration:** Ca {ziel_ca:.1f} / P {ziel_p:.1f} g je kg TS")
+    st.sidebar.write(f"**Zielkonzentration:** Ca {ziel_ca:.1f} / P {ziel_p:.1f} / Na {ziel_na:.1f} g je kg TS")
 
 # Hauptbereich: Rationsgestaltung
 st.header("📋 Rationsgestaltung (Frischmasse pro Tag)")
@@ -70,11 +72,11 @@ for kategorie in KATEGORIEN:
     for i, (_, row) in enumerate(mittel.iterrows()):
         with cols[i % 3]:
             ration_inputs[row["Num"]] = st.number_input(
-                f"{row['Futtermittel']} (kg FM)", 0.0, 50.0, 0.0, 0.5, key=row["Num"]
+                f"{row['Futtermittel']} (kg FM)", 0.0, 50.0, 0.0, 0.1, key=row["Num"]
             )
 
 # Berechnung der gelieferten Nährstoffe
-summen = {k: 0.0 for k in ["TS", "ME", "CP", "sidP", "RMD", "Ca", "P"]}
+summen = {k: 0.0 for k in ["TS", "ME", "CP", "sidP", "RMD", "Ca", "P", "Na"]}
 detaillierte_liste = []
 
 for _, row in df_futtermittel.iterrows():
@@ -89,6 +91,7 @@ for _, row in df_futtermittel.iterrows():
             "RMD": ts_menge * row["RMD_g_kg_TM"],
             "Ca": ts_menge * row["Ca_g_kg_TM"],
             "P": ts_menge * row["P_g_kg_TM"],
+            "Na": ts_menge * row["Na_g_kg_TM"],
         }
         for k, v in werte.items():
             summen[k] += v
@@ -123,10 +126,12 @@ if summen["TS"] > 0:
 
     ca_konz = summen["Ca"] / summen["TS"]
     p_konz = summen["P"] / summen["TS"]
-    c5, c6, c7 = st.columns(3)
+    na_konz = summen["Na"] / summen["TS"]
+    c5, c6, c7, c8 = st.columns(4)
     c5.metric("Rumenale Mikrobielle Differenz", f"{summen['RMD']:.0f} g", "Ziel: 0 bis +2 g/kg TS", delta_color="off")
     c6.metric("Calcium", f"{ca_konz:.1f} g/kg TS", f"Ziel: {ziel_ca:.1f} g/kg TS", delta_color="off")
     c7.metric("Phosphor", f"{p_konz:.1f} g/kg TS", f"Ziel: {ziel_p:.1f} g/kg TS", delta_color="off")
+    c8.metric("Natrium", f"{na_konz:.1f} g/kg TS", f"Ziel: {ziel_na:.1f} g/kg TS", delta_color="off")
 
     # Optische Warnungen
     if deckung_me < 95 or deckung_me > 105:
@@ -149,6 +154,8 @@ if summen["TS"] > 0:
         st.warning(f"⚠️ Calcium liegt bei {ca_konz:.1f} g/kg TS, Zielwert ist {ziel_ca:.1f} g/kg TS.")
     if p_konz < ziel_p:
         st.warning(f"⚠️ Phosphor liegt bei {p_konz:.1f} g/kg TS, Zielwert ist {ziel_p:.1f} g/kg TS.")
+    if na_konz < ziel_na:
+        st.warning(f"⚠️ Natrium liegt bei {na_konz:.1f} g/kg TS, Zielwert ist {ziel_na:.1f} g/kg TS - Viehsalz fehlt.")
 else:
     st.info("💡 Bitte trage oben Futtermengen ein, um die Berechnung zu starten.")
 
