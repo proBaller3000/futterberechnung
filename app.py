@@ -72,7 +72,7 @@ for kategorie in KATEGORIEN:
     cols = st.columns(3)
     for i, (_, row) in enumerate(mittel.iterrows()):
         with cols[i % 3]:
-            ration_inputs[row["Num"]] = st.number_input(
+            ration_inputs[row["Num"]] = st.slider(
                 f"{row['Futtermittel']} (kg FM)", 0.0, 50.0, 0.0, 0.1, key=row["Num"]
             )
 
