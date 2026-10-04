@@ -72,9 +72,14 @@ for kategorie in KATEGORIEN:
     cols = st.columns(3)
     for i, (_, row) in enumerate(mittel.iterrows()):
         with cols[i % 3]:
-            ration_inputs[row["Num"]] = st.slider(
-                f"{row['Futtermittel']} (kg FM)", 0.0, 50.0, 0.0, 0.1, key=row["Num"]
-            )
+            if kategorie == "Mineral und Spezialfutter":
+                ration_inputs[row["Num"]] = st.slider(
+                    f"{row['Futtermittel']} (g FM)", 0.0, 2000.0, 0.0, 10.0, key=row["Num"]
+                )
+            else:
+                ration_inputs[row["Num"]] = st.slider(
+                    f"{row['Futtermittel']} (kg FM)", 0.0, 50.0, 0.0, 0.1, key=row["Num"]
+                )
 
 # Berechnung der gelieferten Nährstoffe
 summen = {k: 0.0 for k in ["TS", "ME", "CP", "sidP", "RMD", "Ca", "P", "Na"]}
@@ -83,7 +88,11 @@ detaillierte_liste = []
 for _, row in df_futtermittel.iterrows():
     fm_menge = ration_inputs.get(row["Num"], 0.0)
     if fm_menge > 0:
-        ts_menge = fm_menge * (row["TM_g_kg_FM"] / 1000.0)
+        if row["Kategorie"] == "Mineral und Spezialfutter":
+            fm_kg = fm_menge / 1000.0
+        else:
+            fm_kg = fm_menge
+        ts_menge = fm_kg * (row["TM_g_kg_FM"] / 1000.0)
         werte = {
             "TS": ts_menge,
             "ME": ts_menge * row["ME_MJ_kg_TM"],
@@ -99,7 +108,7 @@ for _, row in df_futtermittel.iterrows():
 
         detaillierte_liste.append({
             "Futtermittel": row["Futtermittel"],
-            "FM (kg)": fm_menge,
+            "FM": f"{fm_menge:.0f} g" if row["Kategorie"] == "Mineral und Spezialfutter" else f"{fm_menge:.2f} kg",
             "TS (kg)": round(ts_menge, 2),
             "MEₚₖ (MJ)": round(werte["ME"], 1),
             "Rohprotein (g)": round(werte["CP"], 0),
