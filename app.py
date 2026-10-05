@@ -73,11 +73,11 @@ for kategorie in KATEGORIEN:
     for i, (_, row) in enumerate(mittel.iterrows()):
         with cols[i % 3]:
             if kategorie == "Mineral und Spezialfutter":
-                ration_inputs[row["Num"]] = st.slider(
+                ration_inputs[row["Num"]] = st.number_input(
                     f"{row['Futtermittel']} (g FM)", 0.0, 2000.0, 0.0, 10.0, key=row["Num"]
                 )
             else:
-                ration_inputs[row["Num"]] = st.slider(
+                ration_inputs[row["Num"]] = st.number_input(
                     f"{row['Futtermittel']} (kg FM)", 0.0, 50.0, 0.0, 0.1, key=row["Num"]
                 )
 
