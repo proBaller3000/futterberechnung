@@ -5,7 +5,7 @@
 from streamlit.testing.v1 import AppTest
 
 # Referenzration: 20 kg Grassilage, 20 kg Maissilage, 4 kg Gerste, 3 kg Rapsextr.schrot, 70 g Viehsalz
-RATION = {"2014": 20.0, "2226": 20.0, "4025": 4.0, "6425": 3.0, "4945": 0.07}
+RATION = {"2014": 20.0, "2226": 20.0, "4025": 4.0, "6425": 3.0, "4945": 70.0}
 SOLL = {
     "Gesamt TS-Aufnahme": "20.26 kg",
     "Energie (MEₚₖ)": "236.8 MJ",
@@ -16,7 +16,7 @@ SOLL = {
 
 at = AppTest.from_file("app.py", default_timeout=60).run()
 assert not at.exception, at.exception
-assert len([n for n in at.number_input if str(n.key).isdigit()]) == 96   # 96 Futtermittel laut CSV
+assert len([n for n in at.number_input if str(n.key).isdigit()]) == 97   # 97 Futtermittel laut CSV
 assert [s.value for s in at.subheader[:4]] == [
     "🌿 Grundfutterration", "🌾 Ausgleichskraftfutter", "💪 Leistungskraftfutter",
     "🧂 Mineral und Spezialfutter"]
