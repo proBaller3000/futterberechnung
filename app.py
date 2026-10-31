@@ -27,7 +27,13 @@ CA_ZIEL = [3.7, 4.3, 4.8, 5.2, 5.6, 5.9, 6.2, 6.5, 6.7]   # g/kg TM
 P_ZIEL = [2.1, 2.4, 2.6, 2.8, 3.0, 3.2, 3.3, 3.5, 3.6]    # g/kg TM
 NA_ZIEL = [1.3, 1.4, 1.5, 1.6, 1.6, 1.7, 1.7, 1.8, 1.8]   # g/kg TM
 
-# Sidebar: Tierdaten & Bedarf
+# Sidebar: Eingabebasis & Tierdaten
+st.sidebar.header("⚖️ Eingabebasis")
+basis = st.sidebar.radio(
+    "Mengen beziehen sich auf:", ["Frischmasse (FM)", "Trockenmasse (TM)"], key="basis"
+)
+basis_short = "FM" if basis.startswith("Frisch") else "TM"
+
 st.sidebar.header("🐄 Tierdaten & Bedarf")
 tierart = st.sidebar.selectbox("Tierkategorie", ["Milchkuh", "Mastbulle (coming soon)"])
 
@@ -57,8 +63,11 @@ if tierart == "Milchkuh":
     st.sidebar.write(f"**Zielkonzentration:** Ca {ziel_ca:.1f} / P {ziel_p:.1f} / Na {ziel_na:.1f} g je kg TS")
 
 # Hauptbereich: Rationsgestaltung
-st.header("📋 Rationsgestaltung (Frischmasse pro Tag)")
-st.write("Trage hier ein, wie viel kg Frischmasse (FM) das Tier pro Futtermittel fressen soll:")
+st.header(f"📋 Rationsgestaltung ({basis_short} pro Tag)")
+st.write(
+    f"Trage hier die Futtermengen in {basis_short} ein "
+    "(Grundfutter/Kraftfutter in kg, Mineralfutter in g):"
+)
 
 # Reihenfolge = Gliederung der Gruber-Tabelle: Kapitel 9.1-9.3, 9.4-9.9, 9.10, 9.11
 KATEGORIEN = ["Grundfutterration", "Ausgleichskraftfutter", "Leistungskraftfutter", "Mineral und Spezialfutter"]
@@ -74,11 +83,13 @@ for kategorie in KATEGORIEN:
         with cols[i % 3]:
             if kategorie == "Mineral und Spezialfutter":
                 ration_inputs[row["Num"]] = st.number_input(
-                    f"{row['Futtermittel']} (g FM)", 0.0, 2000.0, 0.0, 10.0, key=row["Num"]
+                    f"{row['Futtermittel']} (g {basis_short})", 0.0, 2000.0, 0.0, 10.0,
+                    key=row["Num"],
                 )
             else:
                 ration_inputs[row["Num"]] = st.number_input(
-                    f"{row['Futtermittel']} (kg FM)", 0.0, 50.0, 0.0, 0.1, key=row["Num"]
+                    f"{row['Futtermittel']} (kg {basis_short})", 0.0, 50.0, 0.0, 0.1,
+                    key=row["Num"],
                 )
 
 # Berechnung der gelieferten Nährstoffe
@@ -86,13 +97,16 @@ summen = {k: 0.0 for k in ["TS", "ME", "CP", "sidP", "RMD", "Ca", "P", "Na"]}
 detaillierte_liste = []
 
 for _, row in df_futtermittel.iterrows():
-    fm_menge = ration_inputs.get(row["Num"], 0.0)
-    if fm_menge > 0:
+    menge = ration_inputs.get(row["Num"], 0.0)
+    if menge > 0:
         if row["Kategorie"] == "Mineral und Spezialfutter":
-            fm_kg = fm_menge / 1000.0
+            menge_kg = menge / 1000.0
         else:
-            fm_kg = fm_menge
-        ts_menge = fm_kg * (row["TM_g_kg_FM"] / 1000.0)
+            menge_kg = menge
+        if basis_short == "TM":
+            ts_menge = menge_kg
+        else:
+            ts_menge = menge_kg * (row["TM_g_kg_FM"] / 1000.0)
         werte = {
             "TS": ts_menge,
             "ME": ts_menge * row["ME_MJ_kg_TM"],
@@ -108,7 +122,7 @@ for _, row in df_futtermittel.iterrows():
 
         detaillierte_liste.append({
             "Futtermittel": row["Futtermittel"],
-            "FM": f"{fm_menge:.0f} g" if row["Kategorie"] == "Mineral und Spezialfutter" else f"{fm_menge:.2f} kg",
+            basis_short: f"{menge:.0f} g" if row["Kategorie"] == "Mineral und Spezialfutter" else f"{menge:.2f} kg",
             "TS (kg)": round(ts_menge, 2),
             "MEₚₖ (MJ)": round(werte["ME"], 1),
             "Rohprotein (g)": round(werte["CP"], 0),

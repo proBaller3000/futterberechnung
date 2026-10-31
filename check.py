@@ -36,4 +36,14 @@ assert at.metric[2].delta == "113.8% gedeckt", at.metric[2].delta
 assert any("RMD" in w.value for w in at.warning) is False          # 1,0 g/kg TS liegt im Ziel
 assert any("Natrium" in w.value for w in at.warning) is False     # Viehsalz schliesst die Na-Lücke
 
-print("check.py ok - Ration deckt 117% Energie, 114% sidP, RMD 1,2 g/kg TS, Na 1,6 g/kg TS")
+# Dieselbe Ration auf TM-Basis: identische Nährstoffsummen
+at.radio(key="basis").set_value("Trockenmasse (TM)")
+for num, menge in {"2014": 7.0, "2226": 7.0, "4025": 3.52, "6425": 2.67, "4945": 69.3}.items():
+    at.number_input(key=num).set_value(menge)
+at.run()
+assert not at.exception, at.exception
+ist_tm = {m.label: m.value for m in at.metric}
+for label, erwartet in SOLL.items():
+    assert ist_tm[label] == erwartet, f"TM-Basis {label}: {ist_tm[label]} != {erwartet}"
+
+print("check.py ok - FM- und TM-Basis liefern 117% Energie, 114% sidP, RMD 1,2 g/kg TS, Na 1,6 g/kg TS")
